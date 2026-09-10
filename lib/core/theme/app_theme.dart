@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppColors {
-  // Brand
-  static const Color primary = Color(0xFF2563EB);
-  static const Color primaryDark = Color(0xFF1D4ED8);
-  static const Color primarySoft = Color(0xFFDBEAFE);
+  // Brand (Optima Violet)
+  static const Color primary = Color(0xFF796AB1);
+  static const Color primaryDark = Color(0xFF5D518A);
+  static const Color primarySoft = Color(0xFFEBE8F4);
 
   // Neutral
   static const Color background = Color(0xFFF8FAFC);

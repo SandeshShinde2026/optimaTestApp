@@ -112,16 +112,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Icon(
-                    Icons.people_alt_rounded,
-                    size: 64,
-                    color: Color(0xFF2563EB),
+                  Image.asset(
+                    'assets/optimalogo.png',
+                    height: 80,
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    'Customer Manager',
+                    'Optima Customer Management',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),

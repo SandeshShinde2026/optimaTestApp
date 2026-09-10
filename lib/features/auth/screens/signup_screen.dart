@@ -90,16 +90,15 @@ class _SignupScreenState extends State<SignupScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Icon(
-                    Icons.person_add_alt_1_rounded,
-                    size: 64,
-                    color: Color(0xFF2563EB),
+                  Image.asset(
+                    'assets/optimalogo.png',
+                    height: 80,
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    'Create an Account',
+                    'Optima Customer Management',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                   ),

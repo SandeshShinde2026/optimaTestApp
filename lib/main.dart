@@ -31,7 +31,7 @@ class CustomerManagementApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Customer Manager',
+      title: 'Optima Customer Management',
       theme: AppTheme.lightTheme,
       home: Consumer<AuthController>(
         builder: (context, auth, _) {
