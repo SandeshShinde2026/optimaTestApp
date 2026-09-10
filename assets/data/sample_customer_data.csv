@@ -1,0 +1,21 @@
+﻿customer_id,customer_name,company,email,phone,city,state,address,status,customer_type,last_contact_date
+CUST001,Aarav Mehta,Mehta Retail Solutions,aarav.mehta@example.com,+91 98765 21001,Pune,Maharashtra,"12 Baner Road, Baner",Active,Retail,2026-08-28
+CUST002,Nisha Iyer,Iyer Foods Pvt. Ltd.,nisha.iyer@example.com,+91 98765 21002,Mumbai,Maharashtra,"44 Andheri East, MIDC",Active,Enterprise,2026-09-02
+CUST003,Rohan Kulkarni,RK Distributors,rohan.kulkarni@example.com,+91 98765 21003,Nashik,Maharashtra,18 College Road,Inactive,Distributor,2026-07-19
+CUST004,Priya Shah,Shah Trading Co.,priya.shah@example.com,+91 98765 21004,Ahmedabad,Gujarat,"210 CG Road, Navrangpura",Active,Distributor,2026-09-05
+CUST005,Karan Malhotra,NorthStar Enterprises,karan.malhotra@example.com,+91 98765 21005,New Delhi,Delhi,31 Nehru Place,Prospect,Enterprise,2026-08-31
+CUST006,Sneha Patil,Patil Agro Services,sneha.patil@example.com,+91 98765 21006,Kolhapur,Maharashtra,7 Tarabai Park,Active,SME,2026-08-24
+CUST007,Vikram Rao,Rao Industrial Supplies,vikram.rao@example.com,+91 98765 21007,Hyderabad,Telangana,56 Banjara Hills Road No. 2,Active,Enterprise,2026-09-01
+CUST008,Ananya Sen,Sen & Co.,ananya.sen@example.com,+91 98765 21008,Kolkata,West Bengal,89 Park Street,Prospect,SME,2026-08-17
+CUST009,Rahul Verma,Verma Wholesale,rahul.verma@example.com,+91 98765 21009,Lucknow,Uttar Pradesh,23 Gomti Nagar,Inactive,Wholesale,2026-06-30
+CUST010,Meera Nair,Nair Business Systems,meera.nair@example.com,+91 98765 21010,Kochi,Kerala,"15 MG Road, Ernakulam",Active,SME,2026-09-04
+CUST011,Arjun Deshmukh,AD Components,arjun.deshmukh@example.com,+91 98765 21011,Aurangabad,Maharashtra,40 Chikalthana MIDC,Prospect,Manufacturing,2026-08-20
+CUST012,Ishita Bose,Bose Consumer Products,ishita.bose@example.com,+91 98765 21012,Bengaluru,Karnataka,72 Indiranagar 100 Feet Road,Active,Retail,2026-09-03
+CUST013,Devendra Singh,Singh Logistics,devendra.singh@example.com,+91 98765 21013,Jaipur,Rajasthan,11 Malviya Nagar,Active,Enterprise,2026-08-29
+CUST014,Pooja Joshi,Joshi Office Solutions,pooja.joshi@example.com,+91 98765 21014,Nagpur,Maharashtra,5 Civil Lines,Inactive,SME,2026-07-11
+CUST015,Aditya Menon,Menon Tech Services,aditya.menon@example.com,+91 98765 21015,Chennai,Tamil Nadu,27 Anna Salai,Active,Technology,2026-09-06
+CUST016,Neha Kapoor,Kapoor Home Stores,neha.kapoor@example.com,+91 98765 21016,Chandigarh,Chandigarh,"SCO 118, Sector 17",Prospect,Retail,2026-08-15
+CUST017,Siddharth Jain,Jain Packaging Works,siddharth.jain@example.com,+91 98765 21017,Indore,Madhya Pradesh,62 Vijay Nagar,Active,Manufacturing,2026-09-07
+CUST018,Kavya Reddy,Reddy Farm Solutions,kavya.reddy@example.com,+91 98765 21018,Vijayawada,Andhra Pradesh,9 Benz Circle,Active,SME,2026-08-26
+CUST019,Manish Gupta,Gupta Distribution House,manish.gupta@example.com,+91 98765 21019,Gurugram,Haryana,34 Udyog Vihar Phase IV,Prospect,Distributor,2026-09-01
+CUST020,Tanvi Apte,Apte Consulting,tanvi.apte@example.com,+91 98765 21020,Pune,Maharashtra,101 Kothrud Main Road,Active,Services,2026-09-08

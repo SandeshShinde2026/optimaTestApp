@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "189661010983",
+    "project_id": "optimatestapp",
+    "storage_bucket": "optimatestapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189661010983:android:fa45bc8c1eaafc878d8202",
+        "android_client_info": {
+          "package_name": "com.example.optima_test_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189661010983-76ifgegtv2g6b3g6nj6f37fjehrhesks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzmrgbDNEHgs8QnLoxEWCjC5Bh3PU3Czo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189661010983-76ifgegtv2g6b3g6nj6f37fjehrhesks.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "189661010983-cb6ftotfi8aq3vdoc104io14dljuld0e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.optimaTestApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
