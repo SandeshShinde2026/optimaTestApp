@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_text_field.dart';
 import '../controllers/auth_controller.dart';
-import '../../customers/screens/customer_list_screen.dart';
 import 'signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -15,8 +14,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController(text: 'demo@example.com');
-  final _passwordController = TextEditingController(text: 'password123');
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   void dispose() {
@@ -40,6 +39,56 @@ class _LoginScreenState extends State<LoginScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(authController.error ?? 'Login failed'),
+          backgroundColor: Theme.of(context).colorScheme.error,
+        ),
+      );
+    }
+  }
+
+  Future<void> _handleForgotPassword() async {
+    final email = _emailController.text.trim();
+    if (email.isEmpty || !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Please enter a valid email address above to reset password.'),
+          backgroundColor: Theme.of(context).colorScheme.error,
+        ),
+      );
+      return;
+    }
+
+    final authController = context.read<AuthController>();
+    final success = await authController.resetPassword(email);
+
+    if (!mounted) return;
+
+    if (success) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Password reset link sent! Check your email.'),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(authController.error ?? 'Failed to send reset link'),
+          backgroundColor: Theme.of(context).colorScheme.error,
+        ),
+      );
+    }
+  }
+
+  Future<void> _handleGoogleSignIn() async {
+    final authController = context.read<AuthController>();
+    final success = await authController.signInWithGoogle();
+
+    if (!mounted) return;
+
+    if (!success && authController.error != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(authController.error!),
           backgroundColor: Theme.of(context).colorScheme.error,
         ),
       );
@@ -114,11 +163,42 @@ class _LoginScreenState extends State<LoginScreen> {
                       return null;
                     },
                   ),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: 8),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: _handleForgotPassword,
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(50, 30),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      child: const Text('Forgot Password?'),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
                   AppButton(
                     text: 'Log In',
                     isLoading: authController.isLoading,
                     onPressed: _handleLogin,
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(child: Divider(color: Theme.of(context).colorScheme.outlineVariant)),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Text('OR', style: Theme.of(context).textTheme.bodySmall),
+                      ),
+                      Expanded(child: Divider(color: Theme.of(context).colorScheme.outlineVariant)),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  AppButton(
+                    text: 'Continue with Google',
+                    isSecondary: true,
+                    isLoading: authController.isLoading,
+                    onPressed: _handleGoogleSignIn,
                   ),
                   const SizedBox(height: 16),
                   Row(
@@ -141,6 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
+            ),
             ),
           ),
         ),

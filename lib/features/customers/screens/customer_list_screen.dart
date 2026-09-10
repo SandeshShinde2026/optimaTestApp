@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../controllers/customer_controller.dart';
 import '../widgets/customer_card.dart';
-import '../../auth/controllers/auth_controller.dart';
-import '../../auth/screens/login_screen.dart';
+import '../models/customer.dart';
 import 'customer_detail_screen.dart';
 
 class CustomerListScreen extends StatefulWidget {
@@ -17,25 +16,9 @@ class _CustomerListScreenState extends State<CustomerListScreen> {
   final TextEditingController _searchController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<CustomerController>().loadCustomers();
-    });
-  }
-
-  @override
   void dispose() {
     _searchController.dispose();
     super.dispose();
-  }
-
-  void _handleLogout() async {
-    await context.read<AuthController>().logout();
-    if (!mounted) return;
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const LoginScreen()),
-    );
   }
 
   @override
@@ -45,13 +28,6 @@ class _CustomerListScreenState extends State<CustomerListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Customers'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: _handleLogout,
-            tooltip: 'Log out',
-          ),
-        ],
       ),
       body: Center(
         child: ConstrainedBox(
@@ -78,6 +54,22 @@ class _CustomerListScreenState extends State<CustomerListScreen> {
               onChanged: (value) => customerController.search(value),
             ),
           ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              children: [
+                _buildFilterChip(context, customerController, 'All', null),
+                const SizedBox(width: 8),
+                _buildFilterChip(context, customerController, 'Active', CustomerStatus.active),
+                const SizedBox(width: 8),
+                _buildFilterChip(context, customerController, 'Inactive', CustomerStatus.inactive),
+                const SizedBox(width: 8),
+                _buildFilterChip(context, customerController, 'Prospects', CustomerStatus.prospect),
+              ],
+            ),
+          ),
+          const SizedBox(height: 8),
               Expanded(
                 child: _buildContent(customerController),
               ),
@@ -146,6 +138,19 @@ class _CustomerListScreenState extends State<CustomerListScreen> {
           },
         );
       },
+    );
+  }
+
+  Widget _buildFilterChip(BuildContext context, CustomerController controller, String label, CustomerStatus? status) {
+    final isSelected = controller.currentStatusFilter == status;
+    return FilterChip(
+      label: Text(label),
+      selected: isSelected,
+      onSelected: (_) {
+        controller.setStatusFilter(status);
+      },
+      selectedColor: Theme.of(context).colorScheme.primaryContainer,
+      checkmarkColor: Theme.of(context).colorScheme.onPrimaryContainer,
     );
   }
 }

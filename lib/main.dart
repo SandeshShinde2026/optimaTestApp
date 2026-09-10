@@ -6,7 +6,7 @@ import 'core/theme/app_theme.dart';
 import 'features/auth/controllers/auth_controller.dart';
 import 'features/customers/controllers/customer_controller.dart';
 import 'features/auth/screens/login_screen.dart';
-import 'features/customers/screens/customer_list_screen.dart';
+import 'features/home/screens/main_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +36,7 @@ class CustomerManagementApp extends StatelessWidget {
       home: Consumer<AuthController>(
         builder: (context, auth, _) {
           if (auth.isAuthenticated) {
-            return const CustomerListScreen();
+            return const MainScreen();
           }
           return const LoginScreen();
         },

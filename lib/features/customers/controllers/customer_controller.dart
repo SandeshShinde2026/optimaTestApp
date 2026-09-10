@@ -9,10 +9,18 @@ class CustomerController extends ChangeNotifier {
   List<Customer> _filteredCustomers = [];
   bool _isLoading = true;
   String? _error;
+  CustomerStatus? _currentStatusFilter;
+  String _currentQuery = '';
 
   List<Customer> get customers => _filteredCustomers;
   bool get isLoading => _isLoading;
   String? get error => _error;
+  CustomerStatus? get currentStatusFilter => _currentStatusFilter;
+
+  int get totalCustomers => _allCustomers.length;
+  int get activeCustomers => _allCustomers.where((c) => c.status == CustomerStatus.active).length;
+  int get prospects => _allCustomers.where((c) => c.status == CustomerStatus.prospect).length;
+  List<Customer> get recentCustomers => _allCustomers.take(5).toList();
 
   Future<void> loadCustomers() async {
     _isLoading = true;
@@ -30,12 +38,26 @@ class CustomerController extends ChangeNotifier {
     }
   }
 
+  void setStatusFilter(CustomerStatus? status) {
+    _currentStatusFilter = status;
+    _applyFilters();
+  }
+
   void search(String query) {
-    if (query.isEmpty) {
-      _filteredCustomers = List.from(_allCustomers);
-    } else {
-      final lowerQuery = query.toLowerCase();
-      _filteredCustomers = _allCustomers.where((customer) {
+    _currentQuery = query;
+    _applyFilters();
+  }
+
+  void _applyFilters() {
+    var filtered = _allCustomers;
+
+    if (_currentStatusFilter != null) {
+      filtered = filtered.where((c) => c.status == _currentStatusFilter).toList();
+    }
+
+    if (_currentQuery.isNotEmpty) {
+      final lowerQuery = _currentQuery.toLowerCase();
+      filtered = filtered.where((customer) {
         return customer.name.toLowerCase().contains(lowerQuery) ||
             customer.company.toLowerCase().contains(lowerQuery) ||
             customer.city.toLowerCase().contains(lowerQuery) ||
@@ -43,6 +65,8 @@ class CustomerController extends ChangeNotifier {
             customer.phone.toLowerCase().contains(lowerQuery);
       }).toList();
     }
+
+    _filteredCustomers = filtered;
     notifyListeners();
   }
 }

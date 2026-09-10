@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "189661010983-uniem37fv721ljir26hbkq67ruh2migo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.optima_test_app",
+            "certificate_hash": "2584bda94f72a5f974217483bc21e29100a50778"
+          }
+        },
+        {
           "client_id": "189661010983-76ifgegtv2g6b3g6nj6f37fjehrhesks.apps.googleusercontent.com",
           "client_type": 3
         }

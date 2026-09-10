@@ -73,9 +73,10 @@ class CustomerDetailScreen extends StatelessWidget {
               ],
             ),
           ],
+          ),
+        ),
         ),
       ),
-    ),
     );
   }
 

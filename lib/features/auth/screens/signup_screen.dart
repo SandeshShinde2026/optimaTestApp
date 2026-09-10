@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_text_field.dart';
 import '../controllers/auth_controller.dart';
-import '../../customers/screens/customer_list_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -45,6 +44,24 @@ class _SignupScreenState extends State<SignupScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(authController.error ?? 'Signup failed'),
+          backgroundColor: Theme.of(context).colorScheme.error,
+        ),
+      );
+    }
+  }
+
+  Future<void> _handleGoogleSignIn() async {
+    final authController = context.read<AuthController>();
+    final success = await authController.signInWithGoogle();
+
+    if (!mounted) return;
+
+    if (success) {
+      Navigator.of(context).pop();
+    } else if (authController.error != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(authController.error!),
           backgroundColor: Theme.of(context).colorScheme.error,
         ),
       );
@@ -146,8 +163,27 @@ class _SignupScreenState extends State<SignupScreen> {
                     isLoading: authController.isLoading,
                     onPressed: _handleSignup,
                   ),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(child: Divider(color: Theme.of(context).colorScheme.outlineVariant)),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Text('OR', style: Theme.of(context).textTheme.bodySmall),
+                      ),
+                      Expanded(child: Divider(color: Theme.of(context).colorScheme.outlineVariant)),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  AppButton(
+                    text: 'Continue with Google',
+                    isSecondary: true,
+                    isLoading: authController.isLoading,
+                    onPressed: _handleGoogleSignIn,
+                  ),
                 ],
               ),
+            ),
             ),
           ),
         ),
