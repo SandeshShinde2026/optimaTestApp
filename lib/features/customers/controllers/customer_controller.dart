@@ -22,6 +22,28 @@ class CustomerController extends ChangeNotifier {
   int get prospects => _allCustomers.where((c) => c.status == CustomerStatus.prospect).length;
   List<Customer> get recentCustomers => _allCustomers.take(5).toList();
 
+  Map<String, int> get customersByState {
+    final Map<String, int> counts = {};
+    for (var c in _allCustomers) {
+      if (c.state.isNotEmpty) {
+        counts[c.state] = (counts[c.state] ?? 0) + 1;
+      }
+    }
+    return counts;
+  }
+
+  Map<String, List<Customer>> get customersByCompany {
+    final Map<String, List<Customer>> groups = {};
+    for (var c in _allCustomers) {
+      if (c.company.isNotEmpty) {
+        groups.putIfAbsent(c.company, () => []).add(c);
+      }
+    }
+    return groups;
+  }
+
+  int get totalCompanies => customersByCompany.keys.length;
+
   Future<void> loadCustomers() async {
     _isLoading = true;
     _error = null;

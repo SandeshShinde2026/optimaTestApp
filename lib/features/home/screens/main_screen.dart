@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../../customers/controllers/customer_controller.dart';
 import '../../customers/screens/customer_list_screen.dart';
 import 'dashboard_screen.dart';
-import 'coming_soon_screen.dart';
+import 'reports_screen.dart';
 import '../../profile/screens/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -27,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _screens = [
     const DashboardScreen(),
     const CustomerListScreen(),
-    const ComingSoonScreen(),
+    const ReportsScreen(),
     const ProfileScreen(),
   ];
 
